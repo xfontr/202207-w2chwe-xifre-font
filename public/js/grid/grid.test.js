@@ -1,4 +1,4 @@
-import { setGrid } from "./grid";
+import { setGrid } from "./grid.js";
 
 describe("Given a function setGrid()", () => {
   describe("When it receives the values of 5 length for rows and columns", () => {
