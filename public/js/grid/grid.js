@@ -1,19 +1,10 @@
-const gameData = {
-  grid: [],
-  gridProperties: {
-    width: 30,
-    height: 30,
-  },
-  speed: 300,
-};
-
 const setColumns = (columnLength, rowContent) => {
   const newGrid = [];
   let columnsLeft = columnLength;
   do {
     newGrid.push(rowContent);
     columnsLeft -= 1;
-  } while (columnsLeft > -1);
+  } while (columnsLeft > 0);
   return newGrid;
 };
 
@@ -23,18 +14,15 @@ const setRows = (rowLength) => {
   do {
     newRow.push(0);
     rowsLeft -= 1;
-  } while (rowsLeft > -1);
+  } while (rowsLeft > 0);
   return newRow;
 };
 
-const setGrid = () => {
-  const rowLength = gameData.gridProperties.height;
-  const columnLength = gameData.gridProperties.height;
-
+const setGrid = (rowLength, columnLength) => {
   const rowContent = setRows(rowLength);
   const newGrid = setColumns(columnLength, rowContent);
 
   return newGrid;
 };
 
-console.log(setGrid());
+export { setColumns, setRows, setGrid };
