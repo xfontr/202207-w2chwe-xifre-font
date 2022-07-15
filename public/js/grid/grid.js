@@ -1,28 +1,28 @@
-const setColumns = (columnLength, rowContent) => {
-  const newGrid = [];
-  let columnsLeft = columnLength;
-  do {
-    newGrid.push(rowContent);
-    columnsLeft -= 1;
-  } while (columnsLeft > 0);
-  return newGrid;
-};
-
-const setRows = (rowLength) => {
+const setWidth = (width) => {
   const newRow = [];
-  let rowsLeft = rowLength;
+  let rowsLeft = width;
+
   do {
     newRow.push(0);
     rowsLeft -= 1;
   } while (rowsLeft > 0);
+
   return newRow;
 };
 
-const setGrid = (rowLength, columnLength) => {
-  const rowContent = setRows(rowLength);
-  const newGrid = setColumns(columnLength, rowContent);
+const setGrid = (height, width) => {
+  const newGrid = [];
+
+  let columnsLeft = height;
+  let rowContent;
+
+  do {
+    rowContent = setWidth(width);
+    newGrid.push(rowContent);
+    columnsLeft -= 1;
+  } while (columnsLeft > 0);
 
   return newGrid;
 };
 
-export { setColumns, setRows, setGrid };
+export { setWidth, setGrid };
