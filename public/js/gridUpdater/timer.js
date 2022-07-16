@@ -1,11 +1,14 @@
+import { applyCellRules } from "../cellRules/cellRules.js";
 import gameData from "../gameData.js";
-import updateGrid from "./updateGrid.js";
+import gridReader from "../gridReader/gridReader.js";
 
 const timer = (speed) => {
   setInterval(() => {
     if (gameData.timer.isOn) {
-      updateGrid();
       gameData.timer.iterationCount += 1;
+      applyCellRules();
+      console.clear();
+      console.table(gameData.grid);
     }
   }, speed);
 };

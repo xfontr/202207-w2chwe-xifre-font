@@ -31,17 +31,8 @@ const neighboursAxisY = (row, column, rowPosition) => {
       (rowPosition === 0 && position === 0) ||
       hasCollided(row + rowPosition, column + position)
     ) {
-      console.log(
-        `
-              Collision or 0/0 at row ${row + rowPosition} and column ${
-          column + position
-        }`
-      );
       position += 1;
     } else {
-      console.log(
-        `Going to read row ${row + rowPosition} and column ${column + position}`
-      );
       totalValue += gameData.grid[row + rowPosition][column + position];
       position += 1;
     }
