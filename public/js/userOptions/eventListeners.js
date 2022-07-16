@@ -33,8 +33,6 @@ const gridSetUp = () => {
   selectors.decreaseGridSize.addEventListener("click", () => {
     decreaseSize();
   });
-
-  showSize();
 };
 
 const addEventListeners = () => {
