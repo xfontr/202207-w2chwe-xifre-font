@@ -1,0 +1,13 @@
+.header {
+  &__title {
+    position: fixed;
+    top: 3%;
+    left: 3%;
+
+    letter-spacing: -1.7px;
+    opacity: 0.3;
+
+    user-select: none;
+    z-index: 1;
+  }
+}
