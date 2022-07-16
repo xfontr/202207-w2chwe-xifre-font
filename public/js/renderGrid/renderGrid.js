@@ -5,6 +5,7 @@ const context = selectors.canvas.getContext("2d");
 
 const paintCell = (rowIndex, columnIndex) => {
   const cellSize = 10;
+
   context.fillStyle = gameData.canvas.cellOutterColor;
   context.fillRect(columnIndex * 10, rowIndex * 10, cellSize, cellSize);
 
