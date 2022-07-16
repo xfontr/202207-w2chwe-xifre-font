@@ -1,11 +1,18 @@
+@use "../mixins/menu-options";
+
 .footer {
   position: fixed;
   bottom: 3%;
   left: 3%;
 
-  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5em;
+
+  background-color: rgba(0, 0, 0, 0.2);
   min-width: 50%;
-  padding: 1.5em;
+  padding: 0.9em 1.5em;
   border-radius: 1em;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.12);
   filter: blur(1);
@@ -13,14 +20,34 @@
 
 .menu {
   &__game-status {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include menu-options.menu-option(2.7em, 1.7em);
+  }
 
-    border-radius: 50%;
-    font-size: 1.7em;
-    width: 2.7em;
-    height: 2.7em;
-    padding: 0;
+  &__game-speed-container {
+    @include menu-options.menu-box();
+  }
+
+  &__speed-up-game,
+  &__slow-game {
+    @include menu-options.menu-option(2.3em, 1.3em);
+  }
+
+  &__current-speed {
+    margin-bottom: 0.6em;
+    width: 100%;
+  }
+
+  &__grid-size-container {
+    @include menu-options.menu-box();
+  }
+
+  &__increase-size,
+  &__decrease-size {
+    @include menu-options.menu-option(2.3em, 1.3em);
+  }
+
+  &__current-size {
+    margin-bottom: 0.6em;
+    width: 100%;
   }
 }
