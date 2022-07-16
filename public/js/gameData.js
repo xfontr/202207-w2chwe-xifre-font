@@ -1,6 +1,7 @@
 const gameData = {
   properties: {
     hasBegun: false,
+    isPaused: false,
   },
 
   grid: undefined,

@@ -1,12 +1,15 @@
-import gameData from "../gameData.js";
 import selectors from "../selectors.js";
-import { startGame, restartGame } from "../gameInit.js";
+import { restartGame, gameStatus } from "../gameInit.js";
 import { increaseSpeed, decreaseSpeed, showSpeed } from "./gameSpeed.js";
 import { increaseSize, decreaseSize, showSize } from "./gridSize.js";
 
 const statusButtons = () => {
   selectors.restartButton.addEventListener("click", () => {
     restartGame();
+  });
+
+  selectors.gameStatus.addEventListener("click", () => {
+    gameStatus();
   });
 };
 
@@ -38,11 +41,6 @@ const addEventListeners = () => {
   speedSetUp();
   gridSetUp();
   statusButtons();
-
-  selectors.gameStatus.addEventListener("click", function () {
-    startGame();
-    gameData.properties.hasBegun = true;
-  });
 };
 
 export default addEventListeners;

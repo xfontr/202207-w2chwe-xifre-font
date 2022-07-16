@@ -3,6 +3,8 @@ import gameData from "../gameData.js";
 import renderGrid from "../renderGrid/renderGrid.js";
 
 const timer = (speed) => {
+  gameData.timer.isOn = true;
+
   gameData.timer.setUp = setInterval(() => {
     if (gameData.timer.isOn) {
       gameData.timer.iterationCount += 1;
@@ -13,6 +15,8 @@ const timer = (speed) => {
 };
 
 const stopTimer = () => {
+  gameData.timer.isOn = false;
+
   clearInterval(gameData.timer.setUp);
 };
 
