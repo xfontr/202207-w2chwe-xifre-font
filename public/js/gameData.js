@@ -1,8 +1,8 @@
 const gameData = {
   grid: undefined,
   gridProperties: {
-    width: 3,
-    height: 3,
+    width: 50,
+    height: 50,
   },
   timer: {
     speed: 1000,
@@ -15,11 +15,16 @@ const gameData = {
     cellsToLive: [2, 3],
     cellsToBeBorn: 3,
   },
+  canvas: {
+    width() {
+      return gameData.gridProperties.width * 10;
+    },
+    height() {
+      return gameData.gridProperties.height * 10;
+    },
+    cellColor: "rgb(150, 10, 50)",
+  },
+  canUserDraw: true,
 };
-
-// Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-// Any live cell with two or three live neighbours lives on to the next generation.
-// Any live cell with more than three live neighbours dies, as if by overpopulation.
-// Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
 export default gameData;

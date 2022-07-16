@@ -4,8 +4,10 @@ import updateCell from "./gridUpdater/updateGrid.js";
 import gridReader from "./gridReader/gridReader.js";
 import { applyCellRules } from "./cellRules/cellRules.js";
 import timer from "./gridUpdater/timer.js";
+import { canvasSetUp } from "./drawCanvas/drawCanvas.js";
 
 const main = () => {
+  canvasSetUp();
   gameData.gridProperties.height = 6;
   gameData.gridProperties.width = 6;
   gameData.grid = setGrid(
@@ -17,7 +19,6 @@ const main = () => {
   updateCell(0, 2, 1);
   updateCell(0, 3, 1);
   applyCellRules();
-  console.clear();
   console.log(gameData.grid);
   // timer(gameData.timer.speed);
 };
