@@ -8,8 +8,6 @@ const timer = (speed) => {
     if (gameData.timer.isOn) {
       gameData.timer.iterationCount += 1;
       applyCellRules();
-      console.clear();
-      console.table(gameData.grid);
       renderGrid();
     }
   }, speed);

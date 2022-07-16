@@ -14,7 +14,7 @@ const main = () => {
   const startGameButton = document.querySelector(".menu__start-game");
   startGameButton.addEventListener("click", function () {
     startGame();
-    gameData.canUserDraw = false;
+    gameData.properties.hasBegun = true;
   });
 
   gameData.grid = setGrid(
