@@ -25,6 +25,8 @@ const eventListeners = () => {
 };
 
 const canvasSetUp = () => {
+  context.clearRect(0, 0, selectors.canvas.width, selectors.canvas.height);
+
   selectors.canvas.setAttribute("width", gameData.canvas.height());
   selectors.canvas.setAttribute("height", gameData.canvas.width());
 

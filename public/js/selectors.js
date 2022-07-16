@@ -7,6 +7,7 @@ const selectors = {
   increaseGridSize: document.querySelector(".menu__increase-size"),
   decreaseGridSize: document.querySelector(".menu__decrease-size"),
   currentSize: document.querySelector(".menu__current-size"),
+  sizeBox: document.querySelector(".menu__grid-size-container"),
 };
 
 export default selectors;
