@@ -1,8 +1,14 @@
 import gameData from "../gameData.js";
 import selectors from "../selectors.js";
-import { startGame } from "../gameInit.js";
+import { startGame, restartGame } from "../gameInit.js";
 import { increaseSpeed, decreaseSpeed, showSpeed } from "./gameSpeed.js";
 import { increaseSize, decreaseSize, showSize } from "./gridSize.js";
+
+const statusButtons = () => {
+  selectors.restartButton.addEventListener("click", () => {
+    restartGame();
+  });
+};
 
 const speedSetUp = () => {
   selectors.slowGame.addEventListener("click", () => {
@@ -31,6 +37,7 @@ const gridSetUp = () => {
 const addEventListeners = () => {
   speedSetUp();
   gridSetUp();
+  statusButtons();
 
   selectors.gameStatus.addEventListener("click", function () {
     startGame();

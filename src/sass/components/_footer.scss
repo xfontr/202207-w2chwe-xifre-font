@@ -19,7 +19,8 @@
 }
 
 .menu {
-  &__game-status {
+  &__game-status,
+  &__game-restart {
     @include menu-options.menu-option(2.7em, 1.7em);
   }
 
