@@ -1,6 +1,7 @@
 import { applyCellRules } from "../cellRules/cellRules.js";
 import gameData from "../gameData.js";
 import gridReader from "../gridReader/gridReader.js";
+import renderGrid from "../renderGrid/renderGrid.js";
 
 const timer = (speed) => {
   setInterval(() => {
@@ -9,6 +10,7 @@ const timer = (speed) => {
       applyCellRules();
       console.clear();
       console.table(gameData.grid);
+      renderGrid();
     }
   }, speed);
 };
