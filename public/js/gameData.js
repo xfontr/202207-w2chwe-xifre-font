@@ -1,8 +1,8 @@
 const gameData = {
   grid: undefined,
   gridProperties: {
-    width: 50,
-    height: 50,
+    width: 100,
+    height: 100,
   },
   timer: {
     speed: 1000,

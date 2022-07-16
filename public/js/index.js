@@ -5,11 +5,11 @@ import gridReader from "./gridReader/gridReader.js";
 import { applyCellRules } from "./cellRules/cellRules.js";
 import timer from "./gridUpdater/timer.js";
 import { canvasSetUp } from "./drawCanvas/drawCanvas.js";
+import renderGrid from "./renderGrid/renderGrid.js";
 
 const main = () => {
   canvasSetUp();
-  gameData.gridProperties.height = 6;
-  gameData.gridProperties.width = 6;
+
   gameData.grid = setGrid(
     gameData.gridProperties.width,
     gameData.gridProperties.height
@@ -18,9 +18,11 @@ const main = () => {
   updateCell(0, 1, 1);
   updateCell(0, 2, 1);
   updateCell(0, 3, 1);
-  applyCellRules();
-  console.log(gameData.grid);
-  // timer(gameData.timer.speed);
+  // applyCellRules();
+
+  // console.log(gameData.grid);
+  timer(gameData.timer.speed);
+  // renderGrid();
 };
 
 main();
