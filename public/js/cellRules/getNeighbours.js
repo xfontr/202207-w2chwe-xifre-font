@@ -2,16 +2,20 @@ import gameData from "../gameData.js";
 
 const borders = {
   topLeft: 0,
-  right: gameData.gridProperties.width,
-  bottom: gameData.gridProperties.height,
+  right() {
+    return gameData.gridProperties.width;
+  },
+  bottom() {
+    return gameData.gridProperties.height;
+  },
 };
 
 const hasCollided = (row, column) => {
-  if (row < borders.topLeft || row > borders.bottom) {
+  if (row < borders.topLeft || row >= borders.bottom()) {
     return true;
   }
 
-  if (column < borders.topLeft || column > borders.right) {
+  if (column < borders.topLeft || column >= borders.right()) {
     return true;
   }
 
@@ -27,8 +31,17 @@ const neighboursAxisY = (row, column, rowPosition) => {
       (rowPosition === 0 && position === 0) ||
       hasCollided(row + rowPosition, column + position)
     ) {
+      console.log(
+        `
+              Collision or 0/0 at row ${row + rowPosition} and column ${
+          column + position
+        }`
+      );
       position += 1;
     } else {
+      console.log(
+        `Going to read row ${row + rowPosition} and column ${column + position}`
+      );
       totalValue += gameData.grid[row + rowPosition][column + position];
       position += 1;
     }
