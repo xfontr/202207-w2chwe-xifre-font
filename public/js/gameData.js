@@ -11,7 +11,8 @@ const gameData = {
   },
 
   timer: {
-    speed: 100,
+    setUp: undefined,
+    speed: 200,
     isOn: true,
     iterationCount: 1,
   },
