@@ -27,6 +27,10 @@ const eventListeners = () => {
 const canvasSetUp = () => {
   selectors.canvas.setAttribute("width", gameData.canvas.height());
   selectors.canvas.setAttribute("height", gameData.canvas.width());
+
+  selectors.canvas.style.height = `${gameData.canvas.height()}px`;
+  selectors.canvas.style.width = `${gameData.canvas.width()}px`;
+
   context.fillStyle = gameData.canvas.cellColor;
 
   eventListeners();
@@ -53,23 +57,23 @@ const drawCanvas = (e) => {
 
   context.fillStyle = gameData.canvas.cellOutterColor;
   context.fillRect(
-    curatePosition(e.clientX - rect.left),
-    curatePosition(e.clientY - rect.top),
+    curatePosition(e.clientX - Math.floor(rect.left)),
+    curatePosition(e.clientY - Math.floor(rect.top)),
     cellSize,
     cellSize
   );
 
   context.fillStyle = gameData.canvas.cellInnerColor;
   context.fillRect(
-    curatePosition(e.clientX - rect.left) + 3,
-    curatePosition(e.clientY - rect.top) + 3,
+    curatePosition(e.clientX - Math.floor(rect.left)) + 3,
+    curatePosition(e.clientY - Math.floor(rect.top)) + 3,
     4,
     4
   );
 
   getUserInput(
-    curatePosition(e.clientX - rect.left),
-    curatePosition(e.clientY - rect.top)
+    curatePosition(e.clientX - Math.floor(rect.left)),
+    curatePosition(e.clientY - Math.floor(rect.top))
   );
 
   context.fill();
