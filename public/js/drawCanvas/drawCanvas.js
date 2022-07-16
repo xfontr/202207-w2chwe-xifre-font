@@ -1,11 +1,12 @@
 import gameData from "../gameData.js";
+import selectors from "../selectors.js";
+import { getUserInput } from "../userInput/getUserInput.js";
 
-const canvas = document.querySelector("canvas");
-const context = canvas.getContext("2d");
+const context = selectors.canvas.getContext("2d");
 
 const canvasSetUp = () => {
-  canvas.setAttribute("width", gameData.canvas.height());
-  canvas.setAttribute("height", gameData.canvas.width());
+  selectors.canvas.setAttribute("width", gameData.canvas.height());
+  selectors.canvas.setAttribute("height", gameData.canvas.width());
   context.fillStyle = gameData.canvas.cellColor;
 
   window.onmousemove = function (e) {
@@ -23,16 +24,34 @@ const curatePosition = (position) => {
 };
 
 const drawCanvas = (e) => {
-  let rect = canvas.getBoundingClientRect();
+  if (!gameData.canUserDraw) {
+    return;
+  }
+
+  let rect = selectors.canvas.getBoundingClientRect();
   const cellSize = 10;
 
   context.beginPath();
 
+  context.fillStyle = gameData.canvas.cellOutterColor;
   context.fillRect(
     curatePosition(e.clientX - rect.left),
     curatePosition(e.clientY - rect.top),
     cellSize,
     cellSize
+  );
+
+  context.fillStyle = gameData.canvas.cellInnerColor;
+  context.fillRect(
+    curatePosition(e.clientX - rect.left) + 3,
+    curatePosition(e.clientY - rect.top) + 3,
+    4,
+    4
+  );
+
+  getUserInput(
+    curatePosition(e.clientX - rect.left),
+    curatePosition(e.clientY - rect.top)
   );
 
   context.fill();
