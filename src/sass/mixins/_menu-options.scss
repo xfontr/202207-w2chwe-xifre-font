@@ -1,0 +1,27 @@
+@mixin menu-option($size, $font-size) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  font-size: $font-size;
+  width: $size;
+  height: $size;
+  padding: 0;
+}
+
+@mixin menu-box() {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 30%;
+
+  text-align: center;
+
+  border-radius: 1em;
+  background-color: rgba(0, 0, 0, 0.09);
+  padding: 0.5em;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.07);
+}
