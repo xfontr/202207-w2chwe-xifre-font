@@ -3,6 +3,7 @@ import { setGrid } from "./grid/grid.js";
 import timer from "./gridUpdater/timer.js";
 import { canvasSetUp } from "./drawCanvas/drawCanvas.js";
 import { renderUserInput } from "./userInput/getUserInput.js";
+import selectors from "./selectors.js";
 
 const startGame = () => {
   renderUserInput();
@@ -11,8 +12,7 @@ const startGame = () => {
 };
 
 const main = () => {
-  const startGameButton = document.querySelector(".menu__start-game");
-  startGameButton.addEventListener("click", function () {
+  selectors.gameStatus.addEventListener("click", function () {
     startGame();
     gameData.properties.hasBegun = true;
   });
