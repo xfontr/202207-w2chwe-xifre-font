@@ -12,6 +12,7 @@ const eventListeners = () => {
 
   window.onmousedown = function () {
     isMouseDown = true;
+    gameData.timer.isOn = false;
   };
 
   window.onmouseup = function () {
@@ -19,6 +20,7 @@ const eventListeners = () => {
     if (gameData.properties.hasBegun) {
       renderUserInput();
     }
+    gameData.timer.isOn = true;
   };
 };
 
