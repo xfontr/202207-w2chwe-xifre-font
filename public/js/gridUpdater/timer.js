@@ -1,10 +1,9 @@
 import { applyCellRules } from "../cellRules/cellRules.js";
 import gameData from "../gameData.js";
-import gridReader from "../gridReader/gridReader.js";
 import renderGrid from "../renderGrid/renderGrid.js";
 
 const timer = (speed) => {
-  setInterval(() => {
+  gameData.timer.setUp = setInterval(() => {
     if (gameData.timer.isOn) {
       gameData.timer.iterationCount += 1;
       applyCellRules();
@@ -13,4 +12,8 @@ const timer = (speed) => {
   }, speed);
 };
 
-export default timer;
+const stopTimer = () => {
+  clearInterval(gameData.timer.setUp);
+};
+
+export { timer, stopTimer };
