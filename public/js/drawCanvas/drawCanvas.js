@@ -1,17 +1,33 @@
 import gameData from "../gameData.js";
 import selectors from "../selectors.js";
-import { getUserInput } from "../userInput/getUserInput.js";
+import { getUserInput, renderUserInput } from "../userInput/getUserInput.js";
 
 const context = selectors.canvas.getContext("2d");
+let isMouseDown = false;
+
+const eventListeners = () => {
+  window.onmousemove = function (e) {
+    drawCanvas(e);
+  };
+
+  window.onmousedown = function () {
+    isMouseDown = true;
+  };
+
+  window.onmouseup = function () {
+    isMouseDown = false;
+    if (gameData.properties.hasBegun) {
+      renderUserInput();
+    }
+  };
+};
 
 const canvasSetUp = () => {
   selectors.canvas.setAttribute("width", gameData.canvas.height());
   selectors.canvas.setAttribute("height", gameData.canvas.width());
   context.fillStyle = gameData.canvas.cellColor;
 
-  window.onmousemove = function (e) {
-    drawCanvas(e);
-  };
+  eventListeners();
 };
 
 const curatePosition = (position) => {
@@ -24,7 +40,7 @@ const curatePosition = (position) => {
 };
 
 const drawCanvas = (e) => {
-  if (!gameData.canUserDraw) {
+  if (!gameData.canUserDraw || !isMouseDown) {
     return;
   }
 
