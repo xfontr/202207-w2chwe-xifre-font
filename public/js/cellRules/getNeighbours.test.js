@@ -6,7 +6,12 @@ import updateCell from "../gridUpdater/updateGrid.js";
 describe("Given a function getNeighbours()", () => {
   describe("When it receives the arguments 3 and 3 in a 5x5 grid with 2 neighbour cells", () => {
     test("It should return '2'", () => {
-      gameData.grid = setGrid(5, 5);
+      gameData.gridProperties.height = 6;
+      gameData.gridProperties.width = 6;
+      gameData.grid = setGrid(
+        gameData.gridProperties.width,
+        gameData.gridProperties.width
+      );
       updateCell(4, 4, 1);
       updateCell(3, 4, 1);
 
