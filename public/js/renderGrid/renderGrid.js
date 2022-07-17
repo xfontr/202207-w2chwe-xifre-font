@@ -16,16 +16,22 @@ const paintCell = (rowIndex, columnIndex) => {
 
 const renderGrid = (grid = gameData.grid) => {
   context.clearRect(0, 0, selectors.canvas.width, selectors.canvas.height);
+  let deathCells = gameData.properties.aliveCells;
+  gameData.properties.aliveCells = 0;
 
   grid.forEach((row, rowIndex) => {
     row.forEach((cell, columnIndex) => {
       if (cell === 1) {
         paintCell(rowIndex, columnIndex);
+
+        gameData.properties.totalAliveCells += 1;
+        gameData.properties.aliveCells += 1;
       }
     });
   });
-
+  deathCells = gameData.properties.aliveCells - deathCells;
   if (gameData.canvas.hasGrid) gridLine();
+  selectors.showAliveCells.innerText = `Alive: ${gameData.properties.aliveCells} c. | Generations ${gameData.timer.iterationCount} | Difference: ${deathCells} c.`;
 };
 
 export default renderGrid;

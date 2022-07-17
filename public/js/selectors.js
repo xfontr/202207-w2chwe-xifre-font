@@ -13,6 +13,8 @@ const selectors = {
   currentSize: document.querySelector(".menu__current-size"),
 
   showGridLines: document.querySelector(".menu__grid-display"),
+
+  showAliveCells: document.querySelector(".header__alive-cells"),
 };
 
 export default selectors;
