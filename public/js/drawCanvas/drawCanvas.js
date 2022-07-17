@@ -5,9 +5,11 @@ import gridLine from "./gridLine.js";
 
 const context = selectors.canvas.getContext("2d");
 let isMouseDown = false;
+let isMobile = false;
 
 const eventListeners = () => {
   window.onmousemove = function (e) {
+    isMobile = false;
     drawCanvas(e);
   };
 
@@ -17,6 +19,24 @@ const eventListeners = () => {
   };
 
   window.onmouseup = function () {
+    isMouseDown = false;
+    if (gameData.properties.hasBegun) {
+      renderUserInput();
+    }
+    gameData.timer.isOn = true;
+  };
+
+  selectors.canvas.ontouchmove = function (e) {
+    isMobile = true;
+    drawCanvas(e);
+  };
+
+  window.ontouchstart = function () {
+    isMouseDown = true;
+    gameData.timer.isOn = false;
+  };
+
+  window.ontouchend = function () {
     isMouseDown = false;
     if (gameData.properties.hasBegun) {
       renderUserInput();
@@ -41,12 +61,37 @@ const canvasSetUp = () => {
 };
 
 const curatePosition = (position) => {
-  let curatedNumber = position.toString();
+  let curatedNumber;
 
-  curatedNumber = curatedNumber.slice(0, -1);
-  curatedNumber = `${curatedNumber}0`;
+  if (isMobile) {
+    curatedNumber = position.toFixed(0);
+    curatedNumber = curatedNumber.toString();
+
+    curatedNumber = curatedNumber.slice(0, -1);
+    curatedNumber = `${curatedNumber}0`;
+  } else {
+    curatedNumber = position.toString();
+
+    curatedNumber = curatedNumber.slice(0, -1);
+    curatedNumber = `${curatedNumber}0`;
+  }
 
   return +curatedNumber;
+};
+
+const getPosition = (e) => {
+  const rect = selectors.canvas.getBoundingClientRect();
+  if (isMobile) {
+    return [
+      curatePosition(e.touches[0].clientX - Math.floor(rect.left)),
+      curatePosition(e.touches[0].clientY - Math.floor(rect.top)),
+    ];
+  } else {
+    return [
+      curatePosition(e.clientX - Math.floor(rect.left)),
+      curatePosition(e.clientY - Math.floor(rect.top)),
+    ];
+  }
 };
 
 const drawCanvas = (e) => {
@@ -54,31 +99,25 @@ const drawCanvas = (e) => {
     return;
   }
 
-  let rect = selectors.canvas.getBoundingClientRect();
   const cellSize = 10;
+  const cellInnerSize = 4;
+  const rect = selectors.canvas.getBoundingClientRect();
 
   context.beginPath();
 
   context.fillStyle = gameData.canvas.cellOutterColor;
-  context.fillRect(
-    curatePosition(e.clientX - Math.floor(rect.left)),
-    curatePosition(e.clientY - Math.floor(rect.top)),
-    cellSize,
-    cellSize
-  );
+
+  context.fillRect(getPosition(e)[0], getPosition(e)[1], cellSize, cellSize);
 
   context.fillStyle = gameData.canvas.cellInnerColor;
   context.fillRect(
-    curatePosition(e.clientX - Math.floor(rect.left)) + 3,
-    curatePosition(e.clientY - Math.floor(rect.top)) + 3,
-    4,
-    4
+    getPosition(e)[0] + 3,
+    getPosition(e)[1] + 3,
+    cellInnerSize,
+    cellInnerSize
   );
 
-  getUserInput(
-    curatePosition(e.clientX - Math.floor(rect.left)),
-    curatePosition(e.clientY - Math.floor(rect.top))
-  );
+  getUserInput(getPosition(e)[0], getPosition(e)[1]);
 
   context.fill();
 };
