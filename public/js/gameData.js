@@ -2,6 +2,7 @@ const gameData = {
   properties: {
     hasBegun: false,
     isPaused: false,
+    aliveCells: 0,
   },
 
   grid: undefined,
