@@ -14,11 +14,7 @@ const paintCell = (rowIndex, columnIndex) => {
   context.fillRect(columnIndex * 10 + 3, rowIndex * 10 + 3, 4, 4);
 };
 
-const renderGrid = (grid = gameData.grid) => {
-  context.clearRect(0, 0, selectors.canvas.width, selectors.canvas.height);
-  let deathCells = gameData.properties.aliveCells;
-  gameData.properties.aliveCells = 0;
-
+const render = (grid) => {
   grid.forEach((row, rowIndex) => {
     row.forEach((cell, columnIndex) => {
       if (cell === 1) {
@@ -29,9 +25,24 @@ const renderGrid = (grid = gameData.grid) => {
       }
     });
   });
-  deathCells = gameData.properties.aliveCells - deathCells;
-  if (gameData.canvas.hasGrid) gridLine();
+};
+
+const clearCanvas = () =>
+  context.clearRect(0, 0, selectors.canvas.width, selectors.canvas.height);
+
+const displayData = (deathCells) => {
   selectors.showAliveCells.innerText = `Alive: ${gameData.properties.aliveCells} c. | Generations ${gameData.timer.iterationCount} | Difference: ${deathCells} c.`;
+};
+
+const renderGrid = (grid = gameData.grid) => {
+  let deathCells = gameData.properties.aliveCells;
+  gameData.properties.aliveCells = 0;
+  deathCells = gameData.properties.aliveCells - deathCells;
+
+  clearCanvas();
+  render(grid);
+  if (gameData.canvas.hasGrid) gridLine();
+  displayData(deathCells);
 };
 
 export default renderGrid;
