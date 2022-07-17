@@ -19,7 +19,9 @@ const decreaseSpeed = () => {
 };
 
 const showSpeed = () => {
-  selectors.currentSpeed.innerText = `Speed ${gameData.timer.speed / 1000}s`;
+  selectors.currentSpeed.innerText = `Speed ${(
+    gameData.timer.speed / 1000
+  ).toFixed(2)}s`;
 };
 
 export { increaseSpeed, decreaseSpeed, showSpeed };

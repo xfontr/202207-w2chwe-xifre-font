@@ -1,4 +1,5 @@
 @use "../mixins/menu-options";
+@use "../variables/colors";
 
 .footer {
   position: fixed;
@@ -10,27 +11,41 @@
   align-items: center;
   gap: 1.5em;
 
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: colors.$main-lighter;
   min-width: 50%;
   padding: 0.9em 1.5em;
   border-radius: 1em;
-  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.12);
+  box-shadow: 10px 10px 25px 10px rgba(0, 0, 0, 0.12);
   filter: blur(1);
 }
 
 .menu {
   &__game-status,
   &__game-restart {
-    @include menu-options.menu-option(2.7em, 1.7em);
+    @include menu-options.menu-option(
+      2.7em,
+      1.7em,
+      colors.$contrast,
+      colors.$contrast-typography
+    );
+
+    transition: 0.4s;
   }
 
   &__game-speed-container {
-    @include menu-options.menu-box();
+    @include menu-options.menu-box(colors.$main-lighter);
   }
 
   &__speed-up-game,
   &__slow-game {
-    @include menu-options.menu-option(2.3em, 1.3em);
+    @include menu-options.menu-option(
+      2.3em,
+      1.3em,
+      colors.$contrast,
+      colors.$contrast-typography
+    );
+
+    transition: 0.4s;
   }
 
   &__current-speed {
@@ -39,12 +54,19 @@
   }
 
   &__grid-size-container {
-    @include menu-options.menu-box();
+    @include menu-options.menu-box(colors.$main-lighter);
   }
 
   &__increase-size,
   &__decrease-size {
-    @include menu-options.menu-option(2.3em, 1.3em);
+    @include menu-options.menu-option(
+      2.3em,
+      1.3em,
+      colors.$contrast,
+      colors.$contrast-typography
+    );
+
+    transition: 0.4s;
   }
 
   &__current-size {
@@ -53,7 +75,7 @@
   }
 
   &__grid-options-box {
-    @include menu-options.menu-box();
+    @include menu-options.menu-box(colors.$main-lighter);
     flex-direction: column;
     min-height: 5.6em;
     width: fit-content;

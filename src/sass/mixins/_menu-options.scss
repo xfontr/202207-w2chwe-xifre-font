@@ -1,4 +1,4 @@
-@mixin menu-option($size, $font-size) {
+@mixin menu-option($size, $font-size, $color, $typography-color) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,9 +8,12 @@
   width: $size;
   height: $size;
   padding: 0;
+
+  background-color: $color;
+  color: $typography-color;
 }
 
-@mixin menu-box() {
+@mixin menu-box($color) {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -21,7 +24,7 @@
   text-align: center;
 
   border-radius: 1em;
-  background-color: rgba(0, 0, 0, 0.09);
+  background-color: $color;
   padding: 0.5em;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.07);
 }
