@@ -1,4 +1,4 @@
-import applyCellRules from "../cellRules/cellRules.js";
+import { applyCellRules } from "../cellRules/cellRules.js";
 import gameData from "../gameData.js";
 import renderGrid from "../renderGrid/renderGrid.js";
 

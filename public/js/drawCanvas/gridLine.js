@@ -3,50 +3,48 @@ import selectors from "../selectors.js";
 
 const context = selectors.canvas.getContext("2d");
 
-const drawVerticalLines = (spacing, initialPosition) => {
-  let linesLeft = gameData.canvas.height() / spacing;
-  let nextLocation = 0;
+const horizontalLines = (initialPosition, nextLocation) => {
+  context.lineTo(nextLocation, initialPosition);
+  context.moveTo(nextLocation, gameData.canvas.height());
+};
 
-  context.beginPath();
+const verticalLines = (initialPosition, nextLocation) => {
+  context.lineTo(initialPosition, nextLocation);
+  context.moveTo(gameData.canvas.width(), nextLocation);
+};
 
-  do {
-    context.lineTo(nextLocation, initialPosition);
-    context.moveTo(nextLocation, gameData.canvas.height());
-
-    nextLocation += spacing;
-    linesLeft -= 1;
-  } while (linesLeft > 0);
-
-  context.lineWidth = 1;
+const paintLine = (width = 0.4) => {
+  context.lineWidth = width;
   context.strokeStyle = gameData.canvas.gridColor;
   context.stroke();
 };
 
-const drawHorizontalLines = (spacing, initialPosition) => {
-  let linesLeft = gameData.canvas.width() / spacing;
+const drawLines = (axis, spacing, initialPosition) => {
+  let linesLeft = axis ? gameData.canvas.width() : gameData.canvas.height();
+  linesLeft /= spacing;
+
   let nextLocation = 0;
-
   context.beginPath();
-
   do {
-    context.lineTo(initialPosition, nextLocation);
-    context.moveTo(gameData.canvas.width(), nextLocation);
+    if (axis) {
+      horizontalLines(initialPosition, nextLocation);
+    } else {
+      verticalLines(initialPosition, nextLocation);
+    }
 
     nextLocation += spacing;
     linesLeft -= 1;
   } while (linesLeft > 0);
 
-  context.lineWidth = 0.4;
-  context.strokeStyle = gameData.canvas.gridColor;
-  context.stroke();
+  paintLine();
 };
 
 const gridLine = () => {
   const spacing = 9.5;
   const initialPosition = 1;
 
-  drawVerticalLines(spacing, initialPosition);
-  drawHorizontalLines(spacing, initialPosition);
+  drawLines(true, spacing, initialPosition);
+  drawLines(false, spacing, initialPosition);
 };
 
 export default gridLine;

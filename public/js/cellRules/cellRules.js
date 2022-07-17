@@ -65,4 +65,10 @@ const applyCellRules = () => {
   });
 };
 
-export default applyCellRules;
+export {
+  applyCellRules,
+  minCellsToDie,
+  cellsToLive,
+  cellsToBeBorn,
+  maxCellsToDie,
+};
