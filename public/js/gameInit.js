@@ -53,7 +53,6 @@ const gameInit = () => {
   showSize();
 
   canvasSetUp();
-  gridLine();
 };
 
 const restartGame = () => {
