@@ -1,5 +1,5 @@
 import gameData from "../gameData.js";
-import { applyCellRules } from "./cellRules.js";
+import applyCellRules from "./cellRules.js";
 import updateCell from "../gridUpdater/updateGrid.js";
 import { setGrid } from "../grid/grid.js";
 
