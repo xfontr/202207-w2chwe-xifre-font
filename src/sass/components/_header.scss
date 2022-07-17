@@ -1,13 +1,18 @@
 .header {
+  position: fixed;
+  top: 3%;
+  left: 3%;
   &__title {
-    position: fixed;
-    top: 3%;
-    left: 3%;
-
     letter-spacing: -1.7px;
     opacity: 0.3;
 
     user-select: none;
-    z-index: 1;
+  }
+
+  &__alive-cells {
+    opacity: 0.85;
+    display: block;
+    margin-top: 0.5em;
+    font-weight: 600;
   }
 }
