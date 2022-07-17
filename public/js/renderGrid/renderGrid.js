@@ -1,5 +1,6 @@
 import gameData from "../gameData.js";
 import selectors from "../selectors.js";
+import gridLine from "../drawCanvas/gridLine.js";
 
 const context = selectors.canvas.getContext("2d");
 
@@ -23,6 +24,8 @@ const renderGrid = (grid = gameData.grid) => {
       }
     });
   });
+
+  gridLine();
 };
 
 export default renderGrid;

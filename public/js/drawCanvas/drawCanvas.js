@@ -1,6 +1,7 @@
 import gameData from "../gameData.js";
 import selectors from "../selectors.js";
 import { getUserInput, renderUserInput } from "../userInput/getUserInput.js";
+import gridLine from "./gridLine.js";
 
 const context = selectors.canvas.getContext("2d");
 let isMouseDown = false;
@@ -36,6 +37,7 @@ const canvasSetUp = () => {
   context.fillStyle = gameData.canvas.cellColor;
 
   eventListeners();
+  gridLine();
 };
 
 const curatePosition = (position) => {

@@ -8,6 +8,8 @@ import { renderUserInput } from "./userInput/getUserInput.js";
 import addEventListeners from "./userOptions/eventListeners.js";
 import { showSize } from "./userOptions/gridSize.js";
 
+import gridLine from "./drawCanvas/gridLine.js";
+
 const startGame = () => {
   renderUserInput();
   gameData.properties.hasBegun = true;
@@ -51,6 +53,7 @@ const gameInit = () => {
   showSize();
 
   canvasSetUp();
+  gridLine();
 };
 
 const restartGame = () => {
