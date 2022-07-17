@@ -2,32 +2,56 @@ import gameData from "../gameData.js";
 import updateCell from "../gridUpdater/updateGrid.js";
 import gridReader from "../gridReader/gridReader.js";
 
-const cellRules = (status, row, column, neighbours) => {
+const minCellsToDie = (row, column, neighbours) => {
   if (neighbours < gameData.rules.minCellsToDie) {
     updateCell(row, column, 0);
-    return;
+    return true;
   }
+};
 
+const cellsToLive = (status, row, column, neighbours) => {
   if (
     neighbours === gameData.rules.cellsToLive[0] ||
     neighbours === gameData.rules.cellsToLive[1]
   ) {
     if (status === 1) {
       updateCell(row, column, 1);
-      return;
+      return true;
     }
   }
+};
 
+const cellsToBeBorn = (row, column, neighbours) => {
   if (neighbours === gameData.rules.cellsToBeBorn) {
     updateCell(row, column, 1);
-    return;
+    return true;
   }
+};
 
+const maxCellsToDie = (status, row, column, neighbours) => {
   if (neighbours > gameData.rules.maxCellsToDie) {
     if (status === 1) {
       updateCell(row, column, 0);
-      return;
+      return true;
     }
+  }
+};
+
+const cellRules = (status, row, column, neighbours) => {
+  if (minCellsToDie(row, column, neighbours)) {
+    return;
+  }
+
+  if (cellsToLive(status, row, column, neighbours)) {
+    return;
+  }
+
+  if (cellsToBeBorn(row, column, neighbours)) {
+    return;
+  }
+
+  if (maxCellsToDie(status, row, column, neighbours)) {
+    return;
   }
 };
 

@@ -101,12 +101,10 @@ const drawCanvas = (e) => {
 
   const cellSize = 10;
   const cellInnerSize = 4;
-  const rect = selectors.canvas.getBoundingClientRect();
 
   context.beginPath();
 
   context.fillStyle = gameData.canvas.cellOutterColor;
-
   context.fillRect(getPosition(e)[0], getPosition(e)[1], cellSize, cellSize);
 
   context.fillStyle = gameData.canvas.cellInnerColor;
