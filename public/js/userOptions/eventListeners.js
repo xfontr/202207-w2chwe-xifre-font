@@ -1,9 +1,11 @@
 import selectors from "../selectors.js";
-import { restartGame, gameStatus } from "../gameInit.js";
 import { increaseSpeed, decreaseSpeed, showSpeed } from "./gameSpeed.js";
 import { increaseSize } from "./gridSize.js";
 import gameData from "../gameData.js";
 import renderGrid from "../renderGrid/renderGrid.js";
+
+// eslint-disable-next-line import/no-cycle
+import { restartGame, gameStatus } from "../gameInit.js";
 
 const statusButtons = () => {
   selectors.restartButton.addEventListener("click", () => {

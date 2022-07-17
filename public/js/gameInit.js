@@ -5,8 +5,10 @@ import setGridSize from "./grid/setGridSize.js";
 import { timer, stopTimer } from "./gridUpdater/timer.js";
 import { canvasSetUp, canvasEventListeners } from "./drawCanvas/drawCanvas.js";
 import { renderUserInput } from "./userInput/getUserInput.js";
-import addEventListeners from "./userOptions/eventListeners.js";
 import { showSize } from "./userOptions/gridSize.js";
+
+// eslint-disable-next-line import/no-cycle
+import addEventListeners from "./userOptions/eventListeners.js";
 
 const startGame = () => {
   renderUserInput();

@@ -37,11 +37,12 @@ const displayData = (deathCells) => {
 const renderGrid = (grid = gameData.grid) => {
   let deathCells = gameData.properties.aliveCells;
   gameData.properties.aliveCells = 0;
-  deathCells = gameData.properties.aliveCells - deathCells;
 
   clearCanvas();
   render(grid);
   if (gameData.canvas.hasGrid) gridLine();
+
+  deathCells = gameData.properties.aliveCells - deathCells;
   displayData(deathCells);
 };
 
