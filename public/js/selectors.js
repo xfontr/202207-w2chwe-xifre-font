@@ -11,6 +11,8 @@ const selectors = {
   increaseGridSize: document.querySelector(".menu__increase-size"),
   decreaseGridSize: document.querySelector(".menu__decrease-size"),
   currentSize: document.querySelector(".menu__current-size"),
+
+  showGridLines: document.querySelector(".menu__grid-display"),
 };
 
 export default selectors;

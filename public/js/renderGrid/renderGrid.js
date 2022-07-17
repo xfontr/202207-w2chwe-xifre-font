@@ -25,7 +25,7 @@ const renderGrid = (grid = gameData.grid) => {
     });
   });
 
-  gridLine();
+  if (gameData.canvas.hasGrid) gridLine();
 };
 
 export default renderGrid;

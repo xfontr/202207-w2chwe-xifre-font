@@ -51,4 +51,12 @@
     margin-bottom: 0.6em;
     width: 100%;
   }
+
+  &__grid-options-box {
+    @include menu-options.menu-box();
+    flex-direction: column;
+    min-height: 5.6em;
+    width: fit-content;
+    justify-content: space-between;
+  }
 }

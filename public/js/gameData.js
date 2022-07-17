@@ -34,6 +34,7 @@ const gameData = {
       return gameData.gridProperties.height * 10;
     },
 
+    hasGrid: true,
     cellOutterColor: "rgb(150, 10, 50)",
     cellInnerColor: "white",
     gridColor: "rgba(0, 0, 0, 0.3)",
