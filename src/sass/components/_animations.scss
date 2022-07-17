@@ -1,0 +1,49 @@
+.menu {
+  button:active {
+  }
+
+  &__game-status:hover {
+    transform: scale(1.1);
+  }
+
+  &__game-status:active {
+    transform: scale(0.9);
+    transform: translateY(2px);
+  }
+
+  &__game-restart:hover {
+    transform: rotateZ(360deg);
+  }
+
+  &__game-restart:active {
+    transform: scale(0.9);
+    transform: translateY(2px);
+  }
+
+  &__speed-up-game:hover,
+  &__slow-game:hover {
+    transform: translateX(2px);
+  }
+
+  &__speed-up-game:active,
+  &__slow-game:active {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px;
+  }
+
+  &__speed-up-game:hover {
+    transform: translateX(3px);
+  }
+
+  &__slow-game:hover {
+    transform: translateX(-3px);
+  }
+
+  &__increase-size:hover {
+    transform: scale(1.1);
+  }
+
+  &__decrease-size:hover {
+    transform: scale(0.9);
+  }
+}
