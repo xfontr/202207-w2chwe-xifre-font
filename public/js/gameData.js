@@ -36,8 +36,8 @@ const gameData = {
     },
 
     hasGrid: true,
-    cellOutterColor: "rgb(150, 10, 50)",
-    cellInnerColor: "white",
+    cellOutterColor: "#104658",
+    cellInnerColor: "#84b0ad",
     gridColor: "rgba(0, 0, 0, 0.3)",
   },
 
