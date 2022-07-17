@@ -1,7 +1,7 @@
 import selectors from "../selectors.js";
 import { restartGame, gameStatus } from "../gameInit.js";
 import { increaseSpeed, decreaseSpeed, showSpeed } from "./gameSpeed.js";
-import { increaseSize, decreaseSize, showSize } from "./gridSize.js";
+import { increaseSize } from "./gridSize.js";
 import gameData from "../gameData.js";
 import renderGrid from "../renderGrid/renderGrid.js";
 
@@ -29,17 +29,17 @@ const speedSetUp = () => {
 
 const gridSetUp = () => {
   selectors.increaseGridSize.addEventListener("click", () => {
-    increaseSize();
+    increaseSize(true);
   });
 
   selectors.decreaseGridSize.addEventListener("click", () => {
-    decreaseSize();
+    increaseSize(false);
   });
 };
 
 const gridDisplay = () => {
   selectors.showGridLines.addEventListener("change", () => {
-    gameData.canvas.hasGrid = selectors.showGridLines.checked ? true : false;
+    gameData.canvas.hasGrid = !!selectors.showGridLines.checked;
     renderGrid();
   });
 };

@@ -7,44 +7,6 @@ const context = selectors.canvas.getContext("2d");
 let isMouseDown = false;
 let isMobile = false;
 
-const eventListeners = () => {
-  window.onmousemove = function (e) {
-    isMobile = false;
-    drawCanvas(e);
-  };
-
-  window.onmousedown = function () {
-    isMouseDown = true;
-    gameData.timer.isOn = false;
-  };
-
-  window.onmouseup = function () {
-    isMouseDown = false;
-    if (gameData.properties.hasBegun) {
-      renderUserInput();
-    }
-    gameData.timer.isOn = true;
-  };
-
-  selectors.canvas.ontouchmove = function (e) {
-    isMobile = true;
-    drawCanvas(e);
-  };
-
-  window.ontouchstart = function () {
-    isMouseDown = true;
-    gameData.timer.isOn = false;
-  };
-
-  window.ontouchend = function () {
-    isMouseDown = false;
-    if (gameData.properties.hasBegun) {
-      renderUserInput();
-    }
-    gameData.timer.isOn = true;
-  };
-};
-
 const canvasSetUp = () => {
   context.clearRect(0, 0, selectors.canvas.width, selectors.canvas.height);
 
@@ -56,7 +18,6 @@ const canvasSetUp = () => {
 
   context.fillStyle = gameData.canvas.cellColor;
 
-  eventListeners();
   gridLine();
 };
 
@@ -79,22 +40,21 @@ const curatePosition = (position) => {
   return +curatedNumber;
 };
 
-const getPosition = (e) => {
+const getPosition = (event) => {
   const rect = selectors.canvas.getBoundingClientRect();
   if (isMobile) {
     return [
-      curatePosition(e.touches[0].clientX - Math.floor(rect.left)),
-      curatePosition(e.touches[0].clientY - Math.floor(rect.top)),
-    ];
-  } else {
-    return [
-      curatePosition(e.clientX - Math.floor(rect.left)),
-      curatePosition(e.clientY - Math.floor(rect.top)),
+      curatePosition(event.touches[0].clientX - Math.floor(rect.left)),
+      curatePosition(event.touches[0].clientY - Math.floor(rect.top)),
     ];
   }
+  return [
+    curatePosition(event.clientX - Math.floor(rect.left)),
+    curatePosition(event.clientY - Math.floor(rect.top)),
+  ];
 };
 
-const drawCanvas = (e) => {
+const drawCanvas = (event) => {
   if (!gameData.canUserDraw || !isMouseDown) {
     return;
   }
@@ -105,19 +65,62 @@ const drawCanvas = (e) => {
   context.beginPath();
 
   context.fillStyle = gameData.canvas.cellOutterColor;
-  context.fillRect(getPosition(e)[0], getPosition(e)[1], cellSize, cellSize);
+  context.fillRect(
+    getPosition(event)[0],
+    getPosition(event)[1],
+    cellSize,
+    cellSize
+  );
 
   context.fillStyle = gameData.canvas.cellInnerColor;
   context.fillRect(
-    getPosition(e)[0] + 3,
-    getPosition(e)[1] + 3,
+    getPosition(event)[0] + 3,
+    getPosition(event)[1] + 3,
     cellInnerSize,
     cellInnerSize
   );
 
-  getUserInput(getPosition(e)[0], getPosition(e)[1]);
+  getUserInput(getPosition(event)[0], getPosition(event)[1]);
 
   context.fill();
 };
 
-export { canvasSetUp, drawCanvas };
+const canvasEventListeners = () => {
+  window.onmousemove = (event) => {
+    isMobile = false;
+    drawCanvas(event);
+  };
+
+  window.onmousedown = () => {
+    isMouseDown = true;
+    gameData.timer.isOn = false;
+  };
+
+  window.onmouseup = () => {
+    isMouseDown = false;
+    if (gameData.properties.hasBegun) {
+      renderUserInput();
+    }
+    gameData.timer.isOn = true;
+  };
+
+  selectors.canvas.ontouchmove = (event) => {
+    isMobile = true;
+    drawCanvas(event);
+  };
+
+  window.ontouchstart = () => {
+    isMouseDown = true;
+    gameData.timer.isOn = false;
+  };
+
+  window.ontouchend = () => {
+    isMouseDown = false;
+    if (gameData.properties.hasBegun) {
+      renderUserInput();
+    }
+    gameData.timer.isOn = true;
+  };
+};
+
+export { canvasSetUp, drawCanvas, canvasEventListeners };

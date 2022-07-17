@@ -7,6 +7,7 @@ const minCellsToDie = (row, column, neighbours) => {
     updateCell(row, column, 0);
     return true;
   }
+  return false;
 };
 
 const cellsToLive = (status, row, column, neighbours) => {
@@ -19,6 +20,7 @@ const cellsToLive = (status, row, column, neighbours) => {
       return true;
     }
   }
+  return false;
 };
 
 const cellsToBeBorn = (row, column, neighbours) => {
@@ -26,6 +28,7 @@ const cellsToBeBorn = (row, column, neighbours) => {
     updateCell(row, column, 1);
     return true;
   }
+  return false;
 };
 
 const maxCellsToDie = (status, row, column, neighbours) => {
@@ -35,6 +38,7 @@ const maxCellsToDie = (status, row, column, neighbours) => {
       return true;
     }
   }
+  return false;
 };
 
 const cellRules = (status, row, column, neighbours) => {
@@ -50,9 +54,7 @@ const cellRules = (status, row, column, neighbours) => {
     return;
   }
 
-  if (maxCellsToDie(status, row, column, neighbours)) {
-    return;
-  }
+  maxCellsToDie(status, row, column, neighbours);
 };
 
 const applyCellRules = () => {
@@ -63,4 +65,4 @@ const applyCellRules = () => {
   });
 };
 
-export { applyCellRules };
+export default applyCellRules;

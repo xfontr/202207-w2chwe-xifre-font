@@ -3,7 +3,7 @@ import selectors from "./selectors.js";
 import { setGrid } from "./grid/grid.js";
 import setGridSize from "./grid/setGridSize.js";
 import { timer, stopTimer } from "./gridUpdater/timer.js";
-import { canvasSetUp } from "./drawCanvas/drawCanvas.js";
+import { canvasSetUp, canvasEventListeners } from "./drawCanvas/drawCanvas.js";
 import { renderUserInput } from "./userInput/getUserInput.js";
 import addEventListeners from "./userOptions/eventListeners.js";
 import { showSize } from "./userOptions/gridSize.js";
@@ -14,16 +14,6 @@ const startGame = () => {
 
   timer(gameData.timer.speed);
   selectors.sizeBox.style = "opacity: 0.6";
-};
-
-const gameStatus = () => {
-  if (!gameData.properties.hasBegun) {
-    startGame();
-    selectors.gameStatus.innerHTML = '<i class="fa-solid fa-pause"></i>';
-    return;
-  }
-
-  pauseOption();
 };
 
 const pauseOption = () => {
@@ -40,8 +30,19 @@ const pauseOption = () => {
   }
 };
 
+const gameStatus = () => {
+  if (!gameData.properties.hasBegun) {
+    startGame();
+    selectors.gameStatus.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    return;
+  }
+
+  pauseOption();
+};
+
 const gameInit = () => {
   addEventListeners();
+  canvasEventListeners();
 
   setGridSize();
   gameData.grid = setGrid(
